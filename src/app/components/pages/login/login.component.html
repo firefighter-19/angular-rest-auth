@@ -1,1 +1,27 @@
-<p>login works!</p>
+<form class="sign-in" [formGroup]="form">
+  <div class="sign-in__body">
+    <div class="sign-in__title">
+      <div class="sign-in__text">LOGIN</div>
+    </div>
+    <ui-input
+      [validators]="form.get('username')!.validator!"
+      [required]="true"
+      class="sign-in__field"
+      formControlName="username"
+      label="username"
+    ></ui-input>
+    <ui-input
+      [validators]="form.get('password')!.validator!"
+      formControlName="password"
+      [type]="'password'"
+      class="sign-in__field"
+      label="password"
+    >
+    </ui-input>
+    <div class="sign-in__actions">
+      <button [disabled]="form.invalid" (click)="onSignIn()" type="button">
+        Press to log in
+      </button>
+    </div>
+  </div>
+</form>
