@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+import { ILogin } from "../../services/api-services/auth/interfaces";
 
 export enum AuthActions {
   AUTH_USER = "[Auth Api] Try user get auth",
@@ -13,7 +14,7 @@ export const tryAuthAction = createAction(
 
 export const authUserSuccess = createAction(
   AuthActions.AUTH_USER_SUCCESS,
-  props<any>()
+  props<{ payload: Partial<ILogin> }>()
 );
 
 export const authUserFailed = createAction(

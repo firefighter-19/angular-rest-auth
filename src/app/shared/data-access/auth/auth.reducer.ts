@@ -1,27 +1,36 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { authActions } from ".";
+import { ILogin } from "../../services/api-services/auth/interfaces";
 
 export const authFutureKey = "auth";
 
 export interface AuthState {
   loading: boolean;
-  data: any;
+  data: Partial<ILogin>;
   error: string;
 }
 
-const initialState = {
+const initialState: AuthState = {
   loading: false,
-  data: null,
+  data: {
+    email: "",
+    firstName: "",
+    gender: "",
+    id: 0,
+    image: "",
+    lastName: "",
+    username: "",
+  },
   error: "",
 };
 
 const authReducer = createReducer(
   initialState,
   on(authActions.tryAuthAction, (state) => ({ ...state, loading: true })),
-  on(authActions.authUserSuccess, (state, data) => ({
+  on(authActions.authUserSuccess, (state, { payload }) => ({
     ...state,
     loading: false,
-    data,
+    data: payload,
   })),
   on(authActions.authUserFailed, (state, data) => ({
     ...state,
