@@ -18,7 +18,6 @@ import {
 } from "@angular/forms";
 import { ErrorService } from "src/app/shared/services/error-services/error.service";
 import { Subscription } from "rxjs";
-import { DigitDirective } from "../../../directives/digit.directive";
 import { CommonModule } from "@angular/common";
 
 @Component({
@@ -26,7 +25,7 @@ import { CommonModule } from "@angular/common";
   templateUrl: "./ui-input.component.html",
   styleUrls: ["./ui-input.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, ReactiveFormsModule, DigitDirective],
+  imports: [CommonModule, ReactiveFormsModule],
   standalone: true,
   providers: [
     {
