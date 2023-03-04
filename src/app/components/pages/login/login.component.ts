@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { UiInputComponent } from "src/app/shared/ui-kit/ui-input/ui-input/ui-input.component";
+import { UiInputComponent } from "src/app/shared/ui-kit/ui-input/ui-input.component";
 import { Store } from "@ngrx/store";
 import { authActions } from "src/app/shared/data-access/auth";
 

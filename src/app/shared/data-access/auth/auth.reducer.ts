@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { authActions } from ".";
-import { ILogin } from "../../services/api-services/auth/interfaces";
+import { ILogin } from "../../../core/interfaces/login";
 
 export const authFutureKey = "auth";
 

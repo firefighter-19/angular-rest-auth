@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { ILogin } from "../../services/api-services/auth/interfaces";
+import { ILogin } from "../../../core/interfaces/login";
 
 export enum AuthActions {
   AUTH_USER = "[Auth Api] Try user get auth",

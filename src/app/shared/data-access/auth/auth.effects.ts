@@ -2,8 +2,8 @@ import { authActions } from ".";
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, of, switchMap, tap } from "rxjs";
-import { AuthService } from "../../services/api-services/auth/auth.service";
-import { LocalStorageService } from "../../services/local-storage/local-storage.service";
+import { AuthService } from "../../../core/services/api-services/auth/auth.service";
+import { LocalStorageService } from "../../../core/services/local-storage/local-storage.service";
 
 @Injectable()
 export class AuthEffects {
