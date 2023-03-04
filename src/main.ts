@@ -8,6 +8,8 @@ import { reducers } from "./app/shared/data-access";
 import { importProvidersFrom } from "@angular/core";
 import { EffectsModule } from "@ngrx/effects";
 import { AuthEffects } from "./app/shared/data-access/auth";
+import { CategoriesEffects } from "./app/shared/data-access/project/catogories";
+import { ProductsEffects } from "./app/shared/data-access/project/products";
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -15,7 +17,7 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(),
     importProvidersFrom(
       StoreModule.forRoot(reducers),
-      EffectsModule.forRoot([AuthEffects])
+      EffectsModule.forRoot([AuthEffects, ProductsEffects, CategoriesEffects])
     ),
   ],
 }).catch((err) => console.error(err));
