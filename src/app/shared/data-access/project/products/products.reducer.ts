@@ -31,7 +31,7 @@ const initialState: ProjectState = {
   },
 };
 
-const projectReducer = createReducer(
+const productsReducer = createReducer(
   initialState,
   on(productsActions.projectsLoadingAction, (state) => ({
     ...state,
@@ -50,5 +50,5 @@ const projectReducer = createReducer(
 );
 
 export function reducer(state: ProjectState, action: Action) {
-  return projectReducer(state, action);
+  return productsReducer(state, action);
 }
