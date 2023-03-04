@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { projectActions } from ".";
+import { productsActions } from ".";
 
 export const projectFutureKey = "projects";
 
@@ -7,26 +7,42 @@ export interface ProjectState {
   loading: boolean;
   data: any;
   error: string;
+  options: {
+    filtering: {};
+    sorting: "name" | "weight" | "id" | null;
+  };
+  pagination: {
+    first: number;
+    last: number;
+  };
 }
 
-const initialState = {
+const initialState: ProjectState = {
   loading: false,
   data: null,
   error: "",
+  options: {
+    filtering: {},
+    sorting: null,
+  },
+  pagination: {
+    first: 0,
+    last: 10,
+  },
 };
 
 const projectReducer = createReducer(
   initialState,
-  on(projectActions.projectsLoadingAction, (state) => ({
+  on(productsActions.projectsLoadingAction, (state) => ({
     ...state,
     loading: true,
   })),
-  on(projectActions.projectsSuccessAction, (state, data) => ({
+  on(productsActions.projectsSuccessAction, (state, data) => ({
     ...state,
     loading: false,
     data,
   })),
-  on(projectActions.projectsErrorAction, (state, data) => ({
+  on(productsActions.projectsErrorAction, (state, data) => ({
     ...state,
     loading: false,
     error: data.errorMessage,
