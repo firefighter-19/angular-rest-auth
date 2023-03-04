@@ -10,6 +10,8 @@ import { EffectsModule } from "@ngrx/effects";
 import { AuthEffects } from "./app/shared/data-access/auth";
 import { CategoriesEffects } from "./app/shared/data-access/project/catogories";
 import { ProductsEffects } from "./app/shared/data-access/project/products";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -17,7 +19,12 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(),
     importProvidersFrom(
       StoreModule.forRoot(reducers),
-      EffectsModule.forRoot([AuthEffects, ProductsEffects, CategoriesEffects])
+      StoreDevtoolsModule.instrument({
+        maxAge: 25, // Retains last 25 states
+        logOnly: false, // Restrict extension to log-only mode
+      }),
+      EffectsModule.forRoot([AuthEffects, ProductsEffects, CategoriesEffects]),
+      BrowserAnimationsModule
     ),
   ],
 }).catch((err) => console.error(err));
