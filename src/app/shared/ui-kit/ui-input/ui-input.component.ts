@@ -16,7 +16,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { ErrorService } from "src/app/shared/services/error-services/error.service";
+import { ErrorService } from "src/app/core/services/error-services/error.service";
 import { Subscription } from "rxjs";
 import { CommonModule } from "@angular/common";
 
