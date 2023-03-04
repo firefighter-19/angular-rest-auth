@@ -8,5 +8,10 @@ export const getCategoryState = createSelector(categoryState, (state) => state);
 
 export const getCategoriesList = createSelector(
   getCategoryState,
-  (state) => state.data
+  (state) => state.categories
+);
+
+export const getCategoryLoader = createSelector(
+  categoryState,
+  (state) => state.loading
 );

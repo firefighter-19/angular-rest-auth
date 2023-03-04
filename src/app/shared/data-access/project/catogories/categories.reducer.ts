@@ -6,17 +6,17 @@ export const categoriesFutureKey = "categories";
 
 export interface CategoriesState {
   loading: boolean;
-  data: ICategory[];
+  categories: ICategory[];
   error: string;
 }
 
 const initialState: CategoriesState = {
   loading: false,
-  data: [],
+  categories: [],
   error: "",
 };
 
-const projectReducer = createReducer(
+const categoriesReducer = createReducer(
   initialState,
   on(categoriesActions.categoriesLoadingAction, (state) => ({
     ...state,
@@ -25,7 +25,14 @@ const projectReducer = createReducer(
   on(categoriesActions.categoriesSuccessAction, (state, data) => ({
     ...state,
     loading: false,
-    data: data.payload,
+    categories: data.payload,
+  })),
+  on(categoriesActions.setSelectedCategory, (state, payload) => ({
+    ...state,
+    categories: state.categories.map((category) => ({
+      ...category,
+      selected: payload.name === category.name ? !category.selected : false,
+    })),
   })),
   on(categoriesActions.categoriesErrorAction, (state, data) => ({
     ...state,
@@ -35,5 +42,5 @@ const projectReducer = createReducer(
 );
 
 export function reducer(state: CategoriesState, action: Action) {
-  return projectReducer(state, action);
+  return categoriesReducer(state, action);
 }
