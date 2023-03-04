@@ -1,7 +1,7 @@
 import { HttpService } from "../http/http.service";
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpResponse } from "@angular/common/http";
-import { map, Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 import { ILogin } from "../../../interfaces/login";
 
 @Injectable({

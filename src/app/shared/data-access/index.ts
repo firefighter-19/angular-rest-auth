@@ -1,6 +1,7 @@
-import { ActionReducer, ActionReducerMap } from "@ngrx/store";
+import { ActionReducerMap } from "@ngrx/store";
 import { authReducer } from "./auth";
-import { projectReducer } from "./project";
+import { categoriesReducer } from "./project/catogories";
+import { productsReducer } from "./project/products";
 
 export interface AppState {
   [key: string]: any;
@@ -8,5 +9,6 @@ export interface AppState {
 
 export const reducers: ActionReducerMap<AppState> = {
   [authReducer.authFutureKey]: authReducer.reducer,
-  [projectReducer.projectFutureKey]: projectReducer.reducer,
+  [productsReducer.projectFutureKey]: productsReducer.reducer,
+  [categoriesReducer.categoriesFutureKey]: categoriesReducer.reducer,
 };
