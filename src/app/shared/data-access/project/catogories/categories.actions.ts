@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+import { ICategory } from "src/app/core/interfaces/categories";
 
 export enum CategoriesActions {
   LOAD_CATEGORIES = "[Categories Api] Try load categories",
@@ -12,7 +13,7 @@ export const categoriesLoadingAction = createAction(
 
 export const categoriesSuccessAction = createAction(
   CategoriesActions.CATEGORIES_LOAD_SUCCESS,
-  props<any>()
+  props<{ payload: ICategory[] }>()
 );
 
 export const categoriesErrorAction = createAction(

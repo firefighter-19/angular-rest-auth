@@ -11,7 +11,15 @@ export class CategoriesEffects {
       ofType(categoriesActions.categoriesLoadingAction),
       switchMap(() => {
         return this.categoryService.getAllCategories().pipe(
-          map((data) => categoriesActions.categoriesSuccessAction(data)),
+          map((data) => {
+            const categoriesWithSelect = (data as string[]).map((category) => ({
+              name: category,
+              selected: false,
+            }));
+            return categoriesActions.categoriesSuccessAction({
+              payload: categoriesWithSelect,
+            });
+          }),
           catchError((error) =>
             of(categoriesActions.categoriesErrorAction(error))
           )
