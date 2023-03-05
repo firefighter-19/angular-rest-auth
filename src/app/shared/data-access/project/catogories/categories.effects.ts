@@ -12,7 +12,7 @@ export class CategoriesEffects {
       switchMap(() => {
         return this.categoryService.getAllCategories().pipe(
           map((data) => {
-            const categoriesWithSelect = (data as string[]).map((category) => ({
+            const categoriesWithSelect = data.map((category) => ({
               name: category,
               selected: false,
             }));

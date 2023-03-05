@@ -9,9 +9,12 @@ import { HttpService } from "../http/http.service";
 export class CategoriesService {
   constructor(private http: HttpClient, private httpService: HttpService) {}
 
-  getAllCategories(): Observable<Object> {
-    return this.http.get(`${this.httpService.url}products/categories`, {
-      ...this.httpService.headers,
-    });
+  getAllCategories(): Observable<string[]> {
+    return this.http.get<string[]>(
+      `${this.httpService.url}products/categories`,
+      {
+        ...this.httpService.headers,
+      }
+    );
   }
 }
