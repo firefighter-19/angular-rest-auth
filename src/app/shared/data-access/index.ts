@@ -9,6 +9,6 @@ export interface AppState {
 
 export const reducers: ActionReducerMap<AppState> = {
   [authReducer.authFutureKey]: authReducer.reducer,
-  [productsReducer.projectFutureKey]: productsReducer.reducer,
+  [productsReducer.productFutureKey]: productsReducer.reducer,
   [categoriesReducer.categoriesFutureKey]: categoriesReducer.reducer,
 };

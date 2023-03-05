@@ -1,22 +1,31 @@
 import { createAction, props } from "@ngrx/store";
+import {
+  IProducts,
+  IProductsPaginationOptions,
+} from "src/app/core/interfaces/products";
 
-export enum ProjectActions {
-  LOAD_PROJECTS = "[Projects Api] Try load projects",
-  PROJECTS_LOAD_SUCCESS = "[Projects Api] Projects successfully loaded",
-  PROJECTS_LOAD_ERROR = "[Projects Api] Projects loading error occur",
+export enum ProductsActions {
+  LOAD_PRODUCTS = "[Products Api] Try load products",
+  PRODUCTS_LOAD_SUCCESS = "[Products Api] Products successfully loaded",
+  PRODUCTS_LOAD_ERROR = "[Products Api] Products loading error occur",
+  SET_PAGE_PARAMS = "[Products Page] Products page size changed",
 }
 
-export const projectsLoadingAction = createAction(
-  ProjectActions.LOAD_PROJECTS,
-  props<{ pagination: any }>()
+export const productsLoadingAction = createAction(
+  ProductsActions.LOAD_PRODUCTS
 );
 
-export const projectsSuccessAction = createAction(
-  ProjectActions.PROJECTS_LOAD_SUCCESS,
-  props<any>()
+export const productsSuccessAction = createAction(
+  ProductsActions.PRODUCTS_LOAD_SUCCESS,
+  props<{ payload: IProducts }>()
 );
 
-export const projectsErrorAction = createAction(
-  ProjectActions.PROJECTS_LOAD_ERROR,
+export const productsErrorAction = createAction(
+  ProductsActions.PRODUCTS_LOAD_ERROR,
   props<{ errorMessage: string }>()
+);
+
+export const setPageParams = createAction(
+  ProductsActions.SET_PAGE_PARAMS,
+  props<{ payload: IProductsPaginationOptions }>()
 );

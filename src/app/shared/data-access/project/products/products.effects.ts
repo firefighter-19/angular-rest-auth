@@ -1,36 +1,42 @@
-import { productsActions } from ".";
+import { productsActions, productsSelectors } from ".";
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { map, switchMap } from "rxjs";
+import { catchError, map, of, switchMap, withLatestFrom } from "rxjs";
 import { ProductsService } from "src/app/core/services/api-services/products/products.service";
+import { Store } from "@ngrx/store";
 
 @Injectable()
 export class ProductsEffects {
-  // getProjects$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(projectActions.projectsLoadingAction),
-  //     switchMap((action) => {
-  //       return this.authService
-  //         .login({
-  //           username: action.username,
-  //           password: action.password,
-  //         })
-  //         .pipe(
-  //           map((data) => {
-  //             const { token } = data;
-  //             this.localStorageService.updateLocalStorageData(
-  //               `Bearer ${token}`
-  //             );
-  //             return authActions.authUserSuccess({ payload: data });
-  //           }),
-  //           catchError((error) => of(authActions.authUserFailed(error)))
-  //         );
-  //     })
-  //   );
-  // });
+  getAllProducts$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(
+        ...[
+          productsActions.productsLoadingAction,
+          productsActions.setPageParams,
+        ]
+      ),
+      withLatestFrom(this.store.select(productsSelectors.getPaginationOptions)),
+      switchMap(([_, { limit, skip }]) => {
+        return this.productsService
+          .getAllProducts({
+            limit,
+            skip,
+          })
+          .pipe(
+            map((data) => {
+              return productsActions.productsSuccessAction({ payload: data });
+            }),
+            catchError((error) =>
+              of(productsActions.productsErrorAction(error))
+            )
+          );
+      })
+    );
+  });
 
   constructor(
     private actions$: Actions,
-    private readonly productsService: ProductsService
+    private readonly productsService: ProductsService,
+    private readonly store: Store
   ) {}
 }

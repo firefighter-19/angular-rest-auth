@@ -1,0 +1,14 @@
+.picture {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.table {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 2rem 0;
+}

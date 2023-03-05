@@ -1,6 +1,21 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { projectFutureKey, ProjectState } from "./products.reducer";
+import { productFutureKey, ProductState } from "./products.reducer";
 
-const projectsState = createFeatureSelector<ProjectState>(projectFutureKey);
+const productsState = createFeatureSelector<ProductState>(productFutureKey);
 
-export const getProjectsState = createSelector(projectsState, (state) => state);
+export const getProductsState = createSelector(productsState, (state) => state);
+
+export const getPaginationOptions = createSelector(
+  getProductsState,
+  (state) => state.pagination
+);
+
+export const getProducts = createSelector(
+  getProductsState,
+  (state) => state.products
+);
+
+export const isLoading = createSelector(
+  getProductsState,
+  (state) => state.loading
+);
