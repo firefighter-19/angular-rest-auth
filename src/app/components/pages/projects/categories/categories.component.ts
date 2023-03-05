@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
@@ -16,6 +16,7 @@ import { ICategory } from "src/app/core/interfaces/categories";
   imports: [CommonModule, MatChipsModule, MatProgressBarModule],
   templateUrl: "./categories.component.html",
   styleUrls: ["./categories.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoriesComponent implements OnInit {
   constructor(private readonly store: Store) {}

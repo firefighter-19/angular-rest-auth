@@ -1,4 +1,7 @@
-<li>
-  <input type="checkbox" [id]="category.name" [value]="category.selected" />
-  <label [htmlFor]="category.name">{{ category.name }}</label>
-</li>
+<mat-checkbox
+  [checked]="category.selected"
+  (change)="selectCategory(category.name)"
+  [id]="category.name"
+  [aria-label]="category.name"
+  >{{ category.name }}</mat-checkbox
+>
