@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatButtonModule } from "@angular/material/button";
+
 import { Store } from "@ngrx/store";
 import {
   categoriesActions,
@@ -13,7 +15,12 @@ import { ICategory } from "src/app/core/interfaces/categories";
 @Component({
   selector: "app-categories",
   standalone: true,
-  imports: [CommonModule, MatChipsModule, MatProgressBarModule],
+  imports: [
+    CommonModule,
+    MatChipsModule,
+    MatProgressBarModule,
+    MatButtonModule,
+  ],
   templateUrl: "./categories.component.html",
   styleUrls: ["./categories.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -35,5 +42,9 @@ export class CategoriesComponent implements OnInit {
 
   selectCategory(name: string) {
     this.store.dispatch(categoriesActions.selectCategory({ name }));
+  }
+
+  resetFilters() {
+    this.store.dispatch(categoriesActions.resetFilters());
   }
 }

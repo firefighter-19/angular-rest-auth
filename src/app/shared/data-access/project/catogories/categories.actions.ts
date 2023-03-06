@@ -6,7 +6,7 @@ export enum CategoriesActions {
   CATEGORIES_LOAD_SUCCESS = "[Categories Api] Categories successfully loaded",
   CATEGORIES_LOAD_ERROR = "[Categories Api] Categories loading error occur",
   SELECT_CATEGORY = "[Category Page] Select category",
-  SET_SELECT_CATEGORY = "[Category Page] Set selected category",
+  RESET_FILTERS = "[Category Page] Reset filters",
 }
 
 export const categoriesLoadingAction = createAction(
@@ -28,7 +28,4 @@ export const selectCategory = createAction(
   props<{ name: string }>()
 );
 
-export const setSelectedCategory = createAction(
-  CategoriesActions.SET_SELECT_CATEGORY,
-  props<{ name: string }>()
-);
+export const resetFilters = createAction(CategoriesActions.RESET_FILTERS);

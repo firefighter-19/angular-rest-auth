@@ -27,11 +27,18 @@ const categoriesReducer = createReducer(
     loading: false,
     categories: data.payload,
   })),
-  on(categoriesActions.setSelectedCategory, (state, payload) => ({
+  on(categoriesActions.selectCategory, (state, payload) => ({
     ...state,
     categories: state.categories.map((category) => ({
       ...category,
-      selected: payload.name === category.name ? !category.selected : false,
+      selected: payload.name === category.name,
+    })),
+  })),
+  on(categoriesActions.resetFilters, (state) => ({
+    ...state,
+    categories: state.categories.map((category) => ({
+      ...category,
+      selected: false,
     })),
   })),
   on(categoriesActions.categoriesErrorAction, (state, data) => ({

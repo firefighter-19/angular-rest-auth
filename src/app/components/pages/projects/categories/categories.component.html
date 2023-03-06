@@ -1,14 +1,18 @@
-<mat-chip-listbox *ngIf="categories$ | async as categories">
-  <mat-chip-option
-    *ngFor="let category of categories"
-    [selected]="category.selected"
-    (selectionChange)="selectCategory(category.name)"
-  >
-    {{ category.name }}
-  </mat-chip-option>
-</mat-chip-listbox>
-
-<mat-progress-bar
-  *ngIf="isCategoryLoading$ | async"
-  mode="indeterminate"
-></mat-progress-bar>
+<div>
+  <mat-chip-listbox *ngIf="categories$ | async as categories">
+    <mat-chip-option
+      *ngFor="let category of categories"
+      [selected]="category.selected"
+      (click)="selectCategory(category.name)"
+    >
+      {{ category.name }}
+    </mat-chip-option>
+  </mat-chip-listbox>
+  <button mat-button color="primary" (click)="resetFilters()">
+    Reset filters
+  </button>
+  <mat-progress-bar
+    *ngIf="isCategoryLoading$ | async"
+    mode="indeterminate"
+  ></mat-progress-bar>
+</div>

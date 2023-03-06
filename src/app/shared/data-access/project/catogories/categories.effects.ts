@@ -28,19 +28,6 @@ export class CategoriesEffects {
     );
   });
 
-  /*
-    "setCategoryEffect" was written because there is a problem with "mat-chip-listbox"
-    component. The dispatch action with inner method "selectionChange" works twice. To fix it we will get only the first value.
-  */
-
-  setCategory$ = createEffect(() => {
-    return this.actions$.pipe(
-      take(1),
-      ofType(categoriesActions.selectCategory),
-      map(({ name }) => categoriesActions.setSelectedCategory({ name }))
-    );
-  });
-
   constructor(
     private actions$: Actions,
     private readonly categoryService: CategoriesService

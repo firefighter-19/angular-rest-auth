@@ -41,6 +41,10 @@ const productsReducer = createReducer(
     ...state,
     loading: true,
   })),
+  on(productsActions.productsLoadingWithCategoryAction, (state) => ({
+    ...state,
+    loading: true,
+  })),
   on(productsActions.productsSuccessAction, (state, { payload }) => ({
     ...state,
     loading: false,

@@ -13,7 +13,7 @@ export class CategoriesService {
     return this.http.get<string[]>(
       `${this.httpService.url}products/categories`,
       {
-        ...this.httpService.headers,
+        headers: this.httpService.headers,
       }
     );
   }

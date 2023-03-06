@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { IProductsWithCategory } from "src/app/core/dto/category-products.dto";
 import {
   IProducts,
   IProductsPaginationOptions,
@@ -25,5 +26,16 @@ export class ProductsService {
     );
   }
 
-  getProductsOfACategory() {}
+  getProductsOfACategory({
+    limit,
+    skip,
+    categoryName,
+  }: IProductsWithCategory): Observable<IProducts> {
+    return this.http.get<IProducts>(
+      `${this.httpService.url}products/category/${categoryName}?limit=${limit}&skip=${skip}`,
+      {
+        headers: this.httpService.headers,
+      }
+    );
+  }
 }
