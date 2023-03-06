@@ -44,6 +44,11 @@ const productsReducer = createReducer(
   on(productsActions.productsLoadingWithCategoryAction, (state) => ({
     ...state,
     loading: true,
+    pagination: {
+      ...state.pagination,
+      limit: 10,
+      skip: 0,
+    },
   })),
   on(productsActions.productsSuccessAction, (state, { payload }) => ({
     ...state,

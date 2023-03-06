@@ -15,6 +15,7 @@ import {
 import { MatCardModule } from "@angular/material/card";
 import { MatTableDataSource, MatTableModule } from "@angular/material/table";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSort, MatSortModule } from "@angular/material/sort";
 
 import {
   productsActions,
@@ -32,6 +33,7 @@ import { IProductsItems } from "src/app/core/interfaces/products";
     MatCardModule,
     MatTableModule,
     MatProgressSpinnerModule,
+    MatSortModule,
   ],
   templateUrl: "./products.component.html",
   styleUrls: ["./products.component.css"],
@@ -63,6 +65,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
+  @ViewChild(MatSort) sort!: MatSort;
+
   constructor(private readonly store: Store) {}
 
   ngOnInit(): void {
@@ -75,7 +79,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.pagesSize = products.length;
         if (this.paginator) {
           this.paginator.length = total;
+          this.paginator.pageIndex = 0;
         }
+        this.dataSource.sort = this.sort;
       });
   }
 
@@ -88,8 +94,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       productsActions.setPageParams({
         payload: {
           limit: event.pageSize,
-          skip:
-            event.pageSize * event.pageIndex,
+          skip: event.pageSize * event.pageIndex,
         },
       })
     );
