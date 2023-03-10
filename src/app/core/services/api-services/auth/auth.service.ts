@@ -16,9 +16,9 @@ export class AuthService {
   }: {
     username: string;
     password: string;
-  }): Observable<ILogin> {
+  }): Observable<ILogin & { token: string}> {
     const body = { username, password };
-    return this.http.post<ILogin>(`${this.httpService.url}auth/login`, body, {
+    return this.http.post<ILogin & { token: string}>(`${this.httpService.url}auth/login`, body, {
       ...this.httpService.headers,
     });
   }
