@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 })
 export class LocalStorageService {
   hasLocalStorage!: boolean;
-  private readonly storageKeyAccessToken = "secretAuthToken";
+  private readonly storageKeyAccessToken = "Authorization";
 
   constructor() {
     this.checkLocalStorage();
@@ -18,11 +18,11 @@ export class LocalStorageService {
     localStorage.setItem(key, JSON.stringify(data));
   }
 
-  getData<T>(key: string): T | null {
+  getData<T>(key: string): string | null {
     if (!this.hasLocalStorage) {
       return null;
     }
-    return JSON.parse(localStorage.getItem(key) || "");
+    return localStorage.getItem(key);
   }
 
   getString(key: string): string | null {

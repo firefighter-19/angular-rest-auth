@@ -1,7 +1,9 @@
 <header class="header">
   <nav>
-    <a routerLink="/" mat-button color="primary">Home</a> |
-    <a routerLink="/projects" mat-button color="primary">Projects</a> |
+    <a routerLink="/" mat-button color="primary">Home</a>
+    <a routerLink="/projects" *ngIf="isAuth$ | async" mat-button color="primary"
+      >Projects</a
+    >
     <a routerLink="/auth" mat-button color="primary">Login</a>
   </nav>
 </header>
