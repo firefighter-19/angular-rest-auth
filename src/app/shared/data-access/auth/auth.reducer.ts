@@ -6,7 +6,7 @@ export const authFutureKey = "auth";
 
 export interface AuthState {
   loading: boolean;
-  data: Partial<ILogin>;
+  data: ILogin;
   error: string;
 }
 
@@ -30,7 +30,7 @@ const authReducer = createReducer(
   on(authActions.authUserSuccess, (state, { payload }) => ({
     ...state,
     loading: false,
-    data: payload,
+    data: payload as ILogin,
   })),
   on(authActions.authUserFailed, (state, data) => ({
     ...state,
