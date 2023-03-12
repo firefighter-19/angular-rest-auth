@@ -19,14 +19,18 @@ const initialState: AuthState = {
     id: 0,
     image: "",
     lastName: "",
-    username: "",
+    username: null,
   },
   error: "",
 };
 
 const authReducer = createReducer(
   initialState,
-  on(authActions.tryAuthAction, (state) => ({ ...state, loading: true })),
+  on(authActions.tryAuthAction, (state) => ({
+    ...state,
+    loading: true,
+    error: "",
+  })),
   on(authActions.authUserSuccess, (state, { payload }) => ({
     ...state,
     loading: false,
