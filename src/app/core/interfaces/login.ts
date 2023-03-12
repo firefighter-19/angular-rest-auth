@@ -5,5 +5,5 @@ export interface ILogin {
   id: number;
   image: string;
   lastName: string;
-  username: string;
+  username: string | null;
 }
