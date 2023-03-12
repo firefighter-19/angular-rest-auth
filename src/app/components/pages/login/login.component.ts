@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { MatCardModule } from "@angular/material/card";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
   FormControl,
@@ -6,36 +7,48 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { UiInputComponent } from "src/app/shared/ui-kit/ui-input/ui-input.component";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 import { Store } from "@ngrx/store";
-import { authActions } from "src/app/shared/data-access/auth";
+import { authActions, authSelectors } from "src/app/shared/data-access/auth";
+import { MatButtonModule } from "@angular/material/button";
+import { Observable } from "rxjs";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @Component({
   selector: "app-login",
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, UiInputComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnInit {
-  form!: FormGroup<{
+export class LoginComponent {
+  form: FormGroup<{
     username: FormControl<string | null>;
     password: FormControl<string | null>;
-  }>;
+  }> = new FormGroup({
+    username: new FormControl("", Validators.required),
+    password: new FormControl("", Validators.required),
+  });
+
+  isAuthLoading$: Observable<boolean> = this.store.select(
+    authSelectors.isAuthLoading
+  );
+
+  errorMessage$: Observable<string> = this.store.select(
+    authSelectors.authErrorMessage
+  );
 
   constructor(private readonly store: Store) {}
-
-  ngOnInit(): void {
-    this.initForm();
-  }
-
-  private initForm(): void {
-    this.form = new FormGroup({
-      username: new FormControl("", [Validators.required]),
-      password: new FormControl("", Validators.required),
-    });
-  }
 
   onSignIn() {
     const { username, password } = this.form.value as {

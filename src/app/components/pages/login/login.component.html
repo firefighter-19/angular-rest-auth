@@ -1,32 +1,55 @@
 <div class="login__page">
   <p>username: 'kminchelle'</p>
   <p>password: '0lelplR'</p>
-
-  <form class="sign-in" [formGroup]="form">
-    <div class="sign-in__body">
-      <div class="sign-in__title">
-        <div class="sign-in__text">LOGIN</div>
-      </div>
-      <ui-input
-        [validators]="form.get('username')!.validator!"
-        [required]="true"
-        class="sign-in__field"
-        formControlName="username"
-        label="username"
-      ></ui-input>
-      <ui-input
-        [validators]="form.get('password')!.validator!"
-        formControlName="password"
-        [type]="'password'"
-        class="sign-in__field"
-        label="password"
-      >
-      </ui-input>
-      <div class="sign-in__actions">
-        <button [disabled]="form.invalid" (click)="onSignIn()" type="button">
-          Press to log in
-        </button>
-      </div>
+  <mat-card class="card__field">
+    <mat-card-content>
+      <mat-card-header>
+        <mat-card-title>Login Page</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field appearance="fill" [formGroup]="form">
+          <mat-label>Enter your username</mat-label>
+          <input
+            matInput
+            placeholder="username"
+            formControlName="username"
+            required
+          />
+          <mat-error *ngIf="form.get('username')?.invalid">
+            Username is required!
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-form-field appearance="fill" [formGroup]="form">
+          <mat-label>Enter your password</mat-label>
+          <input
+            matInput
+            placeholder="password"
+            formControlName="password"
+            required
+            type="password"
+          />
+          <mat-error *ngIf="form.get('password')?.invalid">
+            Password is required!
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card-content>
+    <p *ngIf="errorMessage$ | async as authData" class="card__error">
+      {{ authData }}
+    </p>
+    <button
+      [disabled]="form.invalid"
+      mat-raised-button
+      color="primary"
+      (click)="onSignIn()"
+      type="button"
+    >
+      Press to log in
+    </button>
+    <div class="card__spinner" *ngIf="isAuthLoading$ | async">
+      <mat-spinner mode="indeterminate"></mat-spinner>
     </div>
-  </form>
+  </mat-card>
 </div>

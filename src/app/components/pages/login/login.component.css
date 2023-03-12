@@ -1,3 +1,31 @@
 .login__page {
   margin-top: 2rem;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card__field {
+  position: relative;
+}
+
+.card__spinner {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card__error {
+  font-size: 20px;
+  color: rgb(255, 0, 0);
+  text-align: center;
 }
