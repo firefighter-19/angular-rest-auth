@@ -1,4 +1,4 @@
-import { authSelectors } from 'src/app/shared/data-access/auth';
+import { authSelectors } from "src/app/shared/data-access/auth";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
@@ -15,6 +15,8 @@ import { Store } from "@ngrx/store";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  isAuth$: Observable<boolean> = this.store.select(authSelectors.selectIsAuth);
+  user$: Observable<string | null> = this.store.select(
+    authSelectors.selectUserName
+  );
   constructor(private readonly store: Store) {}
 }

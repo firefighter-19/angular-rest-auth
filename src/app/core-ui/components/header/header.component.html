@@ -1,9 +1,13 @@
 <header class="header">
   <nav>
     <a routerLink="/" mat-button color="primary">Home</a>
-    <a routerLink="/projects" *ngIf="isAuth$ | async" mat-button color="primary"
-      >Projects</a
-    >
-    <a routerLink="/auth" mat-button color="primary">Login</a>
+    <a routerLink="/projects" mat-button color="primary">Projects</a>
   </nav>
+  <ng-container *ngIf="user$ | async as user; else login">
+    <div>{{ user }}</div>
+  </ng-container>
 </header>
+
+<ng-template #login>
+  <a routerLink="/auth" mat-button color="primary">Login</a>
+</ng-template>

@@ -1,4 +1,4 @@
-import { AuthGuard } from './core/guards/auth.guard';
+import { AuthGuard } from "./core/guards/auth.guard";
 import { Routes } from "@angular/router";
 
 export const appRoutes: Routes = [
@@ -13,7 +13,10 @@ export const appRoutes: Routes = [
     canMatch: [() => AuthGuard()],
   },
   {
-    path: '**',
-    loadComponent: () => import('./core-ui/components/not-found/not-found.component').then((c) => c.NotFoundComponent),
-  }
+    path: "**",
+    loadComponent: () =>
+      import("./core-ui/components/not-found/not-found.component").then(
+        (c) => c.NotFoundComponent
+      ),
+  },
 ];
